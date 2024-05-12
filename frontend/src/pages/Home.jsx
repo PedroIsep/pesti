@@ -9,6 +9,7 @@ import casnet2Image from "../images/casnet2.jpg";
 
 function Home() {
     const [notes, setNotes] = useState([]);
+    const [maps, setMaps] = useState([]);
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
     const [selectedImage, setSelectedImage] = useState(null);
@@ -20,6 +21,7 @@ function Home() {
 
     useEffect(() => {
         getNotes();
+        getMap();
     }, []);
 
     const getNotes = () => {
@@ -28,6 +30,17 @@ function Home() {
             .then((res) => res.data)
             .then((data) => {
                 setNotes(data);
+                console.log(data);
+            })
+            .catch((err) => alert(err));
+    };
+
+    const getMap = () => {
+        api
+            .get("/api/map/")
+            .then((res) => res.data)
+            .then((data) => {
+                setMaps(data);
                 console.log(data);
             })
             .catch((err) => alert(err));
@@ -57,13 +70,12 @@ function Home() {
     };
 
     const createMap = () => {
-        
         api
             .post("/api/map/", { imageURL: selectedImage.name, model: selectedOption })
             .then((res) => {
                 if (res.status === 201) alert("Map created!");
                 else alert("Failed to make map.");
-                getNotes();
+                getMap();
             })
             .catch((err) => alert(err));
     };
