@@ -56,6 +56,18 @@ function Home() {
             .catch((err) => alert(err));
     };
 
+    const createMap = () => {
+        
+        api
+            .post("/api/map/", { imageURL: selectedImage.name, model: selectedOption })
+            .then((res) => {
+                if (res.status === 201) alert("Map created!");
+                else alert("Failed to make map.");
+                getNotes();
+            })
+            .catch((err) => alert(err));
+    };
+
     //Handling image upload from the user's computer
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -76,10 +88,12 @@ function Home() {
             alert("Por favor selecione um método.");
             return;
         }
+
         setShowDialog(true);
     };
 
     const handleShowImage = () => {
+        createMap();      
         setShowEmptyContainer(true);
       };
 

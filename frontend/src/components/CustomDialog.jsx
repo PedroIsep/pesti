@@ -15,10 +15,9 @@ function CustomDialog({ message, onClose, onShowImage }) {
     onClose();
   };
 
-  
   return (
     <div className="custom-dialog">
-      <h2>Aplicação para uso de modelos de atenção</h2>
+      <h2>Aplicação para uso de Modelos de Atenção</h2>
       <p>{message}</p>
       <div className="button-container">
         <button onClick={handleShowImage}>Criar mapa de saliências</button>
