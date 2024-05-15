@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
+from django.db.backends.mysql.base import DatabaseWrapper
 import os
 
 load_dotenv()
+DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -97,8 +100,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": 'sql11704261',
+        "USER": 'sql11704261',
+        "PASSWORD": 'gMQfD3Z3Vv',
+        "HOST": 'sql11.freemysqlhosting.net',
+        "PORT": '3306',
     }
 }
 
