@@ -4,6 +4,4 @@ from . import views
 urlpatterns = [
     path("notes/", views.NoteListCreate.as_view(), name="note-list"),
     path("notes/delete/<int:pk>/", views.NoteDelete.as_view(), name="delete-note"),
-    path("map/", views.MapListCreate.as_view(), name="map-list"),
-    path("map/delete/<int:pk>/", views.MapDelete.as_view(), name="delete-map"),
 ]

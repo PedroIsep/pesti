@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Note, Map
+from .models import Note
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -18,11 +18,4 @@ class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
         fields = ["id", "content", "imageURL", "model", "created_at", "author"]
-        extra_kwargs = {"author": {"read_only": True}}
-
-
-class MapSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Map
-        fields = ["id", "imageURL", "model", "created_at", "author"]
         extra_kwargs = {"author": {"read_only": True}}

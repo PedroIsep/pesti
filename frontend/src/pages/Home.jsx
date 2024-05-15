@@ -21,7 +21,6 @@ function Home() {
 
     useEffect(() => {
         getNotes();
-        getMap();
     }, []);
 
     const getNotes = () => {
@@ -30,17 +29,6 @@ function Home() {
             .then((res) => res.data)
             .then((data) => {
                 setNotes(data);
-                console.log(data);
-            })
-            .catch((err) => alert(err));
-    };
-
-    const getMap = () => {
-        api
-            .get("/api/map/")
-            .then((res) => res.data)
-            .then((data) => {
-                setMaps(data);
                 console.log(data);
             })
             .catch((err) => alert(err));
@@ -69,17 +57,6 @@ function Home() {
             .catch((err) => alert(err));
     };
 
-    const createMap = () => {
-        api
-            .post("/api/map/", { imageURL: selectedImage.name, model: selectedOption })
-            .then((res) => {
-                if (res.status === 201) alert("Map created!");
-                else alert("Failed to make map.");
-                getMap();
-            })
-            .catch((err) => alert(err));
-    };
-
     //Handling image upload from the user's computer
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -104,8 +81,7 @@ function Home() {
         setShowDialog(true);
     };
 
-    const handleShowImage = () => {
-        createMap();      
+    const handleShowImage = () => {   
         setShowEmptyContainer(true);
       };
 
