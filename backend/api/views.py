@@ -4,7 +4,9 @@ from rest_framework import generics
 from .serializers import UserSerializer, NoteSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Note
-                
+import os
+from moviepy.editor import VideoFileClip
+    
 class NoteListCreate(generics.ListCreateAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]
@@ -33,3 +35,14 @@ class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+
+class VideoSplit(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    
+    imgdir = './jpgs'
+    def extract_frames(imgdir):
+        if not os.path.exists(imgdir):
+            os.makedirs(imgdir)
+
+        
