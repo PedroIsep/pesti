@@ -14,7 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
 from django.db.backends.mysql.base import DatabaseWrapper
-import os
+import os, sys
 
 load_dotenv()
 DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
@@ -109,6 +109,13 @@ DATABASES = {
     }
 }
 
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',  # Usar um banco de dados em memória para testes
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

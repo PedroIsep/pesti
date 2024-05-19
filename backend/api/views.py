@@ -44,5 +44,3 @@ class VideoSplit(generics.ListCreateAPIView):
     def extract_frames(imgdir):
         if not os.path.exists(imgdir):
             os.makedirs(imgdir)
-
-        
